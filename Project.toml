@@ -1,11 +1,11 @@
 authors = ["Stefan de Lange <langestefan@msn.com> and contributors"]
 name = "PetstoreClient"
-uuid = "ce30363f-3ae4-42e1-bb2b-142591690b64"
+uuid = "eba3398b-0056-4571-8242-6fa275961afe"
 version = "1.0.0-DEV"
 
 [compat]
 Base64 = "1"
-Dates = "1.11.0"
+Dates = "1"
 HTTP = "1"
 JSON = "1"
 Logging = "1"
