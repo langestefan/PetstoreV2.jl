@@ -88,13 +88,13 @@ function build_pre_request_hook(auth::Auth)
 end
 
 """
-    resolve_credentials(T::Type{<:Auth}; env_prefix="PETSTORECLIENT") -> T
+    resolve_credentials(T::Type{<:Auth}; env_prefix="PETSTOREV2") -> T
 
 Build an [`Auth`](@ref) of type `T` from the first available source:
 
   1. Environment variables prefixed with `env_prefix` (e.g. `\$(env_prefix)_TOKEN`,
      `\$(env_prefix)_API_KEY`, `\$(env_prefix)_USERNAME` + `\$(env_prefix)_PASSWORD`).
-  2. `~/.config/petstoreclient/credentials.toml` keyed under the auth
+  2. `~/.config/petstorev2/credentials.toml` keyed under the auth
      type — e.g. `[bearer] token = "…"`, `[apikey] key = "…" header = "…"`,
      `[basic] username = "…" password = "…"`.
 
@@ -107,10 +107,10 @@ client = Client("https://api.example.com"; auth = resolve_credentials(BearerToke
 """
 function resolve_credentials end
 
-const _DEFAULT_ENV_PREFIX = "PETSTORECLIENT"
+const _DEFAULT_ENV_PREFIX = "PETSTOREV2"
 const _CREDENTIALS_FILE =
     joinpath(get(ENV, "XDG_CONFIG_HOME", joinpath(homedir(), ".config")),
-             "petstoreclient", "credentials.toml")
+             "petstorev2", "credentials.toml")
 
 _load_credentials_file(path::AbstractString = _CREDENTIALS_FILE) =
     isfile(path) ? TOML.parsefile(path) : Dict{String,Any}()

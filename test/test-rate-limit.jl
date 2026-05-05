@@ -1,4 +1,4 @@
-using PetstoreClient
+using PetstoreV2
 using Test
 
 function _mock_clock(start::Real = 100.0)
@@ -14,35 +14,35 @@ end
 
 @testset "TokenBucket immediate acquire" begin
     clk = _mock_clock()
-    b = PetstoreClient.TokenBucket(; rate = 10.0, burst = 5.0)
-    PetstoreClient.acquire!(b; sleep_fn = clk.sleep_fn, time_fn = clk.time_fn)
+    b = PetstoreV2.TokenBucket(; rate = 10.0, burst = 5.0)
+    PetstoreV2.acquire!(b; sleep_fn = clk.sleep_fn, time_fn = clk.time_fn)
     @test isempty(clk.sleeps)
     @test b.tokens ≈ 4.0
 end
 
 @testset "TokenBucket waits when empty" begin
     clk = _mock_clock()
-    b = PetstoreClient.TokenBucket(; rate = 2.0, burst = 1.0)
-    PetstoreClient.acquire!(b; sleep_fn = clk.sleep_fn, time_fn = clk.time_fn)
-    PetstoreClient.acquire!(b; sleep_fn = clk.sleep_fn, time_fn = clk.time_fn)
+    b = PetstoreV2.TokenBucket(; rate = 2.0, burst = 1.0)
+    PetstoreV2.acquire!(b; sleep_fn = clk.sleep_fn, time_fn = clk.time_fn)
+    PetstoreV2.acquire!(b; sleep_fn = clk.sleep_fn, time_fn = clk.time_fn)
     @test length(clk.sleeps) == 1
     @test clk.sleeps[1] ≈ 0.5
 end
 
 @testset "TokenBucket throws when timeout would expire" begin
     clk = _mock_clock()
-    b = PetstoreClient.TokenBucket(; rate = 1.0, burst = 1.0)
-    PetstoreClient.acquire!(b; sleep_fn = clk.sleep_fn, time_fn = clk.time_fn)
-    @test_throws PetstoreClient.RateLimitError PetstoreClient.acquire!(
+    b = PetstoreV2.TokenBucket(; rate = 1.0, burst = 1.0)
+    PetstoreV2.acquire!(b; sleep_fn = clk.sleep_fn, time_fn = clk.time_fn)
+    @test_throws PetstoreV2.RateLimitError PetstoreV2.acquire!(
         b; timeout = 0.1, sleep_fn = clk.sleep_fn, time_fn = clk.time_fn,
     )
 end
 
 @testset "with_rate_limit runs fn after acquire" begin
     clk = _mock_clock()
-    b = PetstoreClient.TokenBucket(; rate = 100.0, burst = 5.0)
+    b = PetstoreV2.TokenBucket(; rate = 100.0, burst = 5.0)
     n = Ref(0)
-    PetstoreClient.with_rate_limit(b, () -> n[] += 1;
+    PetstoreV2.with_rate_limit(b, () -> n[] += 1;
                             sleep_fn = clk.sleep_fn, time_fn = clk.time_fn)
     @test n[] == 1
 end

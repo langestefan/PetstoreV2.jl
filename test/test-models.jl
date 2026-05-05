@@ -1,16 +1,16 @@
-using PetstoreClient
+using PetstoreV2
 using OpenAPI
 using Test
 
 @testset "Generated module surface" begin
-    @test isdefined(PetstoreClient, :PetstoreClientAPI)
-    api_mod = getfield(PetstoreClient, :PetstoreClientAPI)
-    public = filter(n -> n !== :PetstoreClientAPI, names(api_mod; all = false))
+    @test isdefined(PetstoreV2, :PetstoreV2API)
+    api_mod = getfield(PetstoreV2, :PetstoreV2API)
+    public = filter(n -> n !== :PetstoreV2API, names(api_mod; all = false))
     @test !isempty(public)
 end
 
 @testset "API model types" begin
-    api_mod = getfield(PetstoreClient, :PetstoreClientAPI)
+    api_mod = getfield(PetstoreV2, :PetstoreV2API)
     model_types = [
         getfield(api_mod, n) for n in names(api_mod; all = false)
         if isdefined(api_mod, n) &&
@@ -29,7 +29,7 @@ end
 end
 
 @testset "API set types accept Client" begin
-    api_mod = getfield(PetstoreClient, :PetstoreClientAPI)
+    api_mod = getfield(PetstoreV2, :PetstoreV2API)
     api_sets = [
         getfield(api_mod, n) for n in names(api_mod; all = false)
         if isdefined(api_mod, n) &&

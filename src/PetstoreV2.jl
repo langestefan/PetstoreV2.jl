@@ -1,15 +1,15 @@
-module PetstoreClient
+module PetstoreV2
 
 using HTTP, JSON, OpenAPI
 
 # Generated low-level surface — DO NOT EDIT, regenerate via gen/regenerate.jl
-include("api/PetstoreClientAPI.jl")
-using .PetstoreClientAPI
+include("api/PetstoreV2API.jl")
+using .PetstoreV2API
 
 # Re-export every public name from the generated module so users don't have to
-# qualify with `PetstoreClientAPI.`.
-for n in names(PetstoreClientAPI; all = false)
-    n === Symbol("PetstoreClientAPI") && continue
+# qualify with `PetstoreV2API.`.
+for n in names(PetstoreV2API; all = false)
+    n === Symbol("PetstoreV2API") && continue
     @eval export $n
 end
 

@@ -1,6 +1,6 @@
 authors = ["Stefan de Lange <langestefan@msn.com> and contributors"]
-name = "PetstoreClient"
-uuid = "eba3398b-0056-4571-8242-6fa275961afe"
+name = "PetstoreV2"
+uuid = "a3a16919-babf-4b98-9df6-84589148f31b"
 version = "1.0.0-DEV"
 
 [compat]

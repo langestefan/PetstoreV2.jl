@@ -1,4 +1,4 @@
-# PetstoreClient.jl
+# PetstoreV2.jl
 
 [![Build Status](https://github.com/langestefan/PetstoreV2.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/langestefan/PetstoreV2.jl/actions/workflows/CI.yml?query=branch%3Amain)
 [![Coverage](https://codecov.io/gh/langestefan/PetstoreV2.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/langestefan/PetstoreV2.jl)
@@ -6,7 +6,7 @@
 [![tested with JET.jl](https://img.shields.io/badge/%F0%9F%9B%A9%EF%B8%8F_tested_with-JET.jl-233f9a)](https://github.com/aviatesk/JET.jl)
 
 A Julia REST/JSON API wrapper, scaffolded with
-[OpenAPITemplate.jl](https://github.com/your-username/OpenAPITemplate.jl).
+[OpenAPITemplate.jl](https://github.com/langestefan/OpenAPITemplate.jl).
 
 ## Architecture
 
@@ -28,16 +28,16 @@ Pkg.add(url = "https://github.com/langestefan/PetstoreV2.jl")
 ## Quick start
 
 ```julia
-using PetstoreClient
+using PetstoreV2
 
 # Auth strategies: NoAuth, BearerToken, APIKey, BasicAuth
 client = Client("https://api.example.com";
-                auth = BearerToken(ENV["PETSTORECLIENT_TOKEN"]))
+                auth = BearerToken(ENV["PETSTOREV2_TOKEN"]))
 ```
 
-`resolve_credentials` picks up env vars (`PETSTORECLIENT_TOKEN`,
-`PETSTORECLIENT_API_KEY`, `PETSTORECLIENT_USERNAME` / `PETSTORECLIENT_PASSWORD`)
-or falls back to `~/.config/petstoreclient/credentials.toml`:
+`resolve_credentials` picks up env vars (`PETSTOREV2_TOKEN`,
+`PETSTOREV2_API_KEY`, `PETSTOREV2_USERNAME` / `PETSTOREV2_PASSWORD`)
+or falls back to `~/.config/petstorev2/credentials.toml`:
 
 ```julia
 client = Client("https://api.example.com"; auth = resolve_credentials(BearerToken))
@@ -119,7 +119,7 @@ Concrete checklist for moving this scaffold to a real package:
       struct is enough, or whether to thread a `DefaultMiddleware` through it.
 - [ ] If the API uses OAuth2 or a custom auth scheme, add a struct
       under `src/client/auth.jl` that `apply!`s to a `Dict{String,String}`.
-- [ ] Replace the placeholder `ENV["PETSTORECLIENT_TOKEN"]` references
+- [ ] Replace the placeholder `ENV["PETSTOREV2_TOKEN"]` references
       throughout the README and tests with the real env-var name.
 - [ ] After `pkg> activate test; pkg> add BrokenRecord@0.1`, write at least
       one test using `BrokenRecord.playback(f, "<name>.yml")` and run it

@@ -4,13 +4,13 @@
 
 ```julia
 using Pkg
-Pkg.add("PetstoreClient")
+Pkg.add("PetstoreV2")
 ```
 
 ## Constructing a Client
 
 ```julia
-using PetstoreClient
+using PetstoreV2
 
 client = Client("https://api.example.com"; auth = NoAuth())
 ```

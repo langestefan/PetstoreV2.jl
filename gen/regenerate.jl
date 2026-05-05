@@ -9,7 +9,7 @@
 using Pkg
 
 const SPEC_URL = "https://petstore.swagger.io/v2/swagger.json"
-const API_PKG = "PetstoreClientAPI"
+const API_PKG = "PetstoreV2API"
 const GENERATOR_VERSION = "7.10.0"
 const NPM_WRAPPER_VERSION = "2.21.4"
 

@@ -1,20 +1,20 @@
 ```@meta
-CurrentModule = PetstoreClient
+CurrentModule = PetstoreV2
 ```
 
-# PetstoreClient.jl
+# PetstoreV2.jl
 
-Documentation for [PetstoreClient.jl](https://github.com/langestefan/PetstoreV2.jl).
+Documentation for [PetstoreV2.jl](https://github.com/langestefan/PetstoreV2.jl).
 
 A Julia REST/JSON API wrapper scaffolded with
-[OpenAPITemplate.jl](https://github.com/your-username/OpenAPITemplate.jl).
+[OpenAPITemplate.jl](https://github.com/langestefan/OpenAPITemplate.jl).
 
 ## Quick start
 
 ```julia
-using PetstoreClient
+using PetstoreV2
 
-client = Client("https://api.example.com"; auth = BearerToken(ENV["PETSTORECLIENT_TOKEN"]))
+client = Client("https://api.example.com"; auth = BearerToken(ENV["PETSTOREV2_TOKEN"]))
 ```
 
 See the [Getting Started](getting_started.md) guide for a worked example, or

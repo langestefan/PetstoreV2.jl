@@ -1,42 +1,42 @@
-using PetstoreClient
+using PetstoreV2
 using Base64: base64decode
 using Test
 
 @testset "NoAuth leaves headers untouched" begin
     h = Dict{String,String}()
-    PetstoreClient.apply!(PetstoreClient.NoAuth(), h)
+    PetstoreV2.apply!(PetstoreV2.NoAuth(), h)
     @test isempty(h)
 end
 
 @testset "BearerToken sets Authorization" begin
     h = Dict{String,String}()
-    PetstoreClient.apply!(PetstoreClient.BearerToken("abc123"), h)
+    PetstoreV2.apply!(PetstoreV2.BearerToken("abc123"), h)
     @test h["Authorization"] == "Bearer abc123"
 end
 
 @testset "APIKey defaults to X-API-Key" begin
     h = Dict{String,String}()
-    PetstoreClient.apply!(PetstoreClient.APIKey("xyz"), h)
+    PetstoreV2.apply!(PetstoreV2.APIKey("xyz"), h)
     @test h["X-API-Key"] == "xyz"
 end
 
 @testset "APIKey accepts custom header" begin
     h = Dict{String,String}()
-    PetstoreClient.apply!(PetstoreClient.APIKey("xyz"; header = "X-Custom-Key"), h)
+    PetstoreV2.apply!(PetstoreV2.APIKey("xyz"; header = "X-Custom-Key"), h)
     @test h["X-Custom-Key"] == "xyz"
     @test !haskey(h, "X-API-Key")
 end
 
 @testset "BasicAuth base64-encodes credentials" begin
     h = Dict{String,String}()
-    PetstoreClient.apply!(PetstoreClient.BasicAuth("alice", "s3cret"), h)
+    PetstoreV2.apply!(PetstoreV2.BasicAuth("alice", "s3cret"), h)
     @test startswith(h["Authorization"], "Basic ")
     payload = String(base64decode(h["Authorization"][length("Basic ")+1:end]))
     @test payload == "alice:s3cret"
 end
 
 @testset "build_pre_request_hook applies auth" begin
-    hook = PetstoreClient.build_pre_request_hook(PetstoreClient.BearerToken("tok"))
+    hook = PetstoreV2.build_pre_request_hook(PetstoreV2.BearerToken("tok"))
     h = Dict{String,String}()
     _, _, h2 = hook("/foo", nothing, h)
     @test h2["Authorization"] == "Bearer tok"
@@ -47,10 +47,10 @@ end
             "CREDTEST_API_KEY" => "secret",
             "CREDTEST_API_KEY_HEADER" => "X-Custom",
             "CREDTEST_USERNAME" => "u", "CREDTEST_PASSWORD" => "p") do
-        @test PetstoreClient.resolve_credentials(PetstoreClient.BearerToken; env_prefix = "CREDTEST").token == "from-env"
-        ak = PetstoreClient.resolve_credentials(PetstoreClient.APIKey; env_prefix = "CREDTEST")
+        @test PetstoreV2.resolve_credentials(PetstoreV2.BearerToken; env_prefix = "CREDTEST").token == "from-env"
+        ak = PetstoreV2.resolve_credentials(PetstoreV2.APIKey; env_prefix = "CREDTEST")
         @test ak.key == "secret" && ak.header == "X-Custom"
-        basic = PetstoreClient.resolve_credentials(PetstoreClient.BasicAuth; env_prefix = "CREDTEST")
+        basic = PetstoreV2.resolve_credentials(PetstoreV2.BasicAuth; env_prefix = "CREDTEST")
         @test basic.username == "u" && basic.password == "p"
     end
 end
@@ -60,8 +60,8 @@ end
             "MISSING_API_KEY" => nothing,
             "MISSING_USERNAME" => nothing,
             "MISSING_PASSWORD" => nothing) do
-        @test_throws ArgumentError PetstoreClient.resolve_credentials(PetstoreClient.BearerToken; env_prefix = "MISSING")
-        @test_throws ArgumentError PetstoreClient.resolve_credentials(PetstoreClient.APIKey; env_prefix = "MISSING")
-        @test_throws ArgumentError PetstoreClient.resolve_credentials(PetstoreClient.BasicAuth; env_prefix = "MISSING")
+        @test_throws ArgumentError PetstoreV2.resolve_credentials(PetstoreV2.BearerToken; env_prefix = "MISSING")
+        @test_throws ArgumentError PetstoreV2.resolve_credentials(PetstoreV2.APIKey; env_prefix = "MISSING")
+        @test_throws ArgumentError PetstoreV2.resolve_credentials(PetstoreV2.BasicAuth; env_prefix = "MISSING")
     end
 end

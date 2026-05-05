@@ -1,6 +1,6 @@
 {
   "generatorName": "julia-client",
-  "packageName": "PetstoreClientAPI",
+  "packageName": "PetstoreV2API",
   "additionalProperties": {
     "exportModels": true,
     "exportOperations": true

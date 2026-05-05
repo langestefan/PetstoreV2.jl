@@ -1,4 +1,4 @@
-using PetstoreClient
+using PetstoreV2
 using Test
 
 # Aqua and JET are NOT default deps of test/Project.toml — install on demand:
@@ -11,7 +11,7 @@ let aqua_id = Base.identify_package("Aqua")
     else
         Aqua = Base.require(aqua_id)
         @testset "Aqua" begin
-            Aqua.test_all(PetstoreClient; ambiguities = false, stale_deps = false)
+            Aqua.test_all(PetstoreV2; ambiguities = false, stale_deps = false)
         end
     end
 end
@@ -23,7 +23,7 @@ if v"1.12" <= VERSION < v"1.13"
         else
             JET = Base.require(jet_id)
             @testset "JET" begin
-                JET.test_package(PetstoreClient; target_modules = (PetstoreClient,))
+                JET.test_package(PetstoreV2; target_modules = (PetstoreV2,))
             end
         end
     end

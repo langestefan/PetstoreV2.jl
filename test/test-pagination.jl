@@ -1,4 +1,4 @@
-using PetstoreClient
+using PetstoreV2
 using Test
 
 @testset "paginate_cursor" begin
@@ -7,14 +7,14 @@ using Test
         "c1" => ([4, 5], "c2"),
         "c2" => ([6], nothing),
     )
-    items = collect(PetstoreClient.paginate_cursor(c -> pages[c]))
+    items = collect(PetstoreV2.paginate_cursor(c -> pages[c]))
     @test items == [1, 2, 3, 4, 5, 6]
 end
 
 @testset "paginate_offset stops on short page" begin
     data = collect(1:23)
     fetched = Tuple{Int,Int}[]
-    items = collect(PetstoreClient.paginate_offset(; page_size = 10) do offset, limit
+    items = collect(PetstoreV2.paginate_offset(; page_size = 10) do offset, limit
         push!(fetched, (offset, limit))
         data[(offset+1):min(offset + limit, length(data))]
     end)
@@ -24,6 +24,6 @@ end
 
 @testset "paginate_pagenum stops on empty page" begin
     pages = Dict(1 => ['a', 'b'], 2 => ['c'], 3 => Char[])
-    items = collect(PetstoreClient.paginate_pagenum(p -> pages[p]))
+    items = collect(PetstoreV2.paginate_pagenum(p -> pages[p]))
     @test items == ['a', 'b', 'c']
 end

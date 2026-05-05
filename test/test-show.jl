@@ -1,4 +1,4 @@
-using PetstoreClient
+using PetstoreV2
 using OpenAPI
 using Test
 

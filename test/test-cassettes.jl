@@ -1,4 +1,4 @@
-using PetstoreClient
+using PetstoreV2
 using Test
 
 # BrokenRecord lets tests record an HTTP interaction once and replay it
@@ -51,8 +51,8 @@ function _run_cassette_tests(BrokenRecord)
     #
     # @testset "list pets (cassette)" begin
     #     pets = BrokenRecord.playback("list_pets.yml") do
-    #         list_pets(PetstoreClient.Client("https://api.example.com";
-    #                                  auth = PetstoreClient.NoAuth()))
+    #         list_pets(PetstoreV2.Client("https://api.example.com";
+    #                                  auth = PetstoreV2.NoAuth()))
     #     end
     #     @test !isempty(pets)
     # end

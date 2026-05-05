@@ -1,7 +1,7 @@
 # Julia API Reference
 
 ```@meta
-CurrentModule = PetstoreClient
+CurrentModule = PetstoreV2
 ```
 
 ## Client
@@ -18,8 +18,8 @@ NoAuth
 BearerToken
 APIKey
 BasicAuth
-PetstoreClient.apply!
-PetstoreClient.build_pre_request_hook
+PetstoreV2.apply!
+PetstoreV2.build_pre_request_hook
 ```
 
 ## Errors
