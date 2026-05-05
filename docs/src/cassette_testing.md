@@ -1,8 +1,7 @@
 # Recorded HTTP tests with BrokenRecord
 
 This tutorial walks through writing a deterministic test for an endpoint
-in `PetstoreV2.jl` using
-[BrokenRecord.jl](https://github.com/JuliaTesting/BrokenRecord.jl).
+in `PetstoreV2.jl` using [BrokenRecord.jl](https://github.com/JuliaTesting/BrokenRecord.jl).
 
 The package's test scaffold already includes `test/test-cassettes.jl`,
 which configures BrokenRecord and creates `test/cassettes/`. This page
