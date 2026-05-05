@@ -1,7 +1,7 @@
 # PetstoreClient.jl
 
-[![Build Status](https://github.com/your-username/PetstoreClient.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/your-username/PetstoreClient.jl/actions/workflows/CI.yml?query=branch%3Amain)
-[![Coverage](https://codecov.io/gh/your-username/PetstoreClient.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/your-username/PetstoreClient.jl)
+[![Build Status](https://github.com/langestefan/PetstoreV2.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/langestefan/PetstoreV2.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Coverage](https://codecov.io/gh/langestefan/PetstoreV2.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/langestefan/PetstoreV2.jl)
 [![Aqua QA](https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
 [![tested with JET.jl](https://img.shields.io/badge/%F0%9F%9B%A9%EF%B8%8F_tested_with-JET.jl-233f9a)](https://github.com/aviatesk/JET.jl)
 
@@ -22,7 +22,7 @@ Two layers:
 
 ```julia
 using Pkg
-Pkg.add(url = "https://github.com/your-username/PetstoreClient.jl")
+Pkg.add(url = "https://github.com/langestefan/PetstoreV2.jl")
 ```
 
 ## Quick start

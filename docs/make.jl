@@ -86,7 +86,7 @@ makedocs(;
     sitename = "PetstoreClient.jl",
     authors = "your-username",
     format = MarkdownVitepress(;
-        repo = "github.com/your-username/PetstoreClient.jl",
+        repo = "github.com/langestefan/PetstoreV2.jl",
         devbranch = "main",
         devurl = "dev",
     ),
@@ -95,7 +95,7 @@ makedocs(;
 )
 
 deploydocs(;
-    repo = "github.com/your-username/PetstoreClient.jl",
+    repo = "github.com/langestefan/PetstoreV2.jl",
     target = "build",
     branch = "gh-pages",
     devbranch = "main",

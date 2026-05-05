@@ -4,7 +4,7 @@ CurrentModule = PetstoreClient
 
 # PetstoreClient.jl
 
-Documentation for [PetstoreClient.jl](https://github.com/your-username/PetstoreClient.jl).
+Documentation for [PetstoreClient.jl](https://github.com/langestefan/PetstoreV2.jl).
 
 A Julia REST/JSON API wrapper scaffolded with
 [OpenAPITemplate.jl](https://github.com/your-username/OpenAPITemplate.jl).
