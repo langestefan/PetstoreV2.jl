@@ -21,24 +21,19 @@ function _api_pages(spec_path::AbstractString, src_dir::AbstractString)
     isfile(spec_path) || return Any[]
     spec = JSON.parsefile(spec_path)
     paths = get(spec, "paths", Dict())
-    tag_descriptions =
-        Dict(t["name"] => get(t, "description", "") for t in get(spec, "tags", Any[]))
+    tag_descriptions = Dict(t["name"] => get(t, "description", "")
+                            for t in get(spec, "tags", Any[]))
     grouped = Dict{String,Vector{NamedTuple}}()
     for (path, methods) in paths
         for (method, op) in methods
-            method in ("get", "post", "put", "delete", "patch", "head", "options") ||
-                continue
+            method in ("get", "post", "put", "delete", "patch", "head", "options") || continue
             tag = isempty(get(op, "tags", String[])) ? "default" : op["tags"][1]
-            push!(
-                get!(grouped, tag, NamedTuple[]),
-                (
-                    method = uppercase(method),
-                    path = path,
-                    summary = get(op, "summary", "$(uppercase(method)) $path"),
-                    description = get(op, "description", ""),
-                    operationId = get(op, "operationId", ""),
-                ),
-            )
+            push!(get!(grouped, tag, NamedTuple[]),
+                  (method = uppercase(method),
+                   path = path,
+                   summary = get(op, "summary", "$(uppercase(method)) $path"),
+                   description = get(op, "description", ""),
+                   operationId = get(op, "operationId", "")))
         end
     end
 
@@ -72,13 +67,18 @@ end
 const API_PAGES = HAS_SPEC ? _api_pages(SPEC_SRC, joinpath(@__DIR__, "src")) : Any[]
 
 const PAGES = Any[
-    "Home"=>"index.md",
-    "Getting Started"=>"getting_started.md",
-    "Guides"=>Any["Recorded HTTP tests"=>"cassette_testing.md",],
-    "Julia API Reference"=>"julia_reference.md",
+    "Home" => "index.md",
+    "Getting Started" => "getting_started.md",
+    "Guides" => Any[
+        "Recorded HTTP tests" => "cassette_testing.md",
+    ],
+    "Julia API Reference" => "julia_reference.md",
 ]
 if !isempty(API_PAGES)
-    push!(PAGES, "REST API Reference" => Any["Overview"=>"api/index.md", API_PAGES...])
+    push!(PAGES, "REST API Reference" => Any[
+        "Overview" => "api/index.md",
+        API_PAGES...,
+    ])
 end
 
 makedocs(;
@@ -89,15 +89,14 @@ makedocs(;
         repo = "github.com/langestefan/PetstoreV2.jl",
         devbranch = "main",
         devurl = "dev",
+        build_vitepress = true,
     ),
     pages = PAGES,
     warnonly = true,
 )
 
-deploydocs(;
+DocumenterVitepress.deploydocs(;
     repo = "github.com/langestefan/PetstoreV2.jl",
-    target = "build",
-    branch = "gh-pages",
     devbranch = "main",
     push_preview = true,
 )

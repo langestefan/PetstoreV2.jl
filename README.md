@@ -1,6 +1,9 @@
 # PetstoreV2.jl
 
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://langestefan.github.io/PetstoreV2.jl/stable/)
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://langestefan.github.io/PetstoreV2.jl/dev/)
 [![Build Status](https://github.com/langestefan/PetstoreV2.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/langestefan/PetstoreV2.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Documentation](https://github.com/langestefan/PetstoreV2.jl/actions/workflows/Documentation.yml/badge.svg?branch=main)](https://github.com/langestefan/PetstoreV2.jl/actions/workflows/Documentation.yml?query=branch%3Amain)
 [![Coverage](https://codecov.io/gh/langestefan/PetstoreV2.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/langestefan/PetstoreV2.jl)
 [![Aqua QA](https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
 [![tested with JET.jl](https://img.shields.io/badge/%F0%9F%9B%A9%EF%B8%8F_tested_with-JET.jl-233f9a)](https://github.com/aviatesk/JET.jl)
@@ -131,8 +134,7 @@ Concrete checklist for moving this scaffold to a real package:
       schemes — see `OPENAPI_GENERATOR_NOTES.md` if present).
 - [ ] Customize this README — replace this section with concrete
       domain examples and a brief domain-level overview.
-- [ ] Set the `CODECOV_TOKEN` and `DOCUMENTER_KEY` secrets on GitHub if
-      you want coverage reports and docs deploys.
+- [ ] Set the `CODECOV_TOKEN` secret on GitHub if you want coverage reports.
 - [ ] When ready to publish, register the package via
       [JuliaRegistries/General](https://github.com/JuliaRegistries/General)
       using the standard `@JuliaRegistrator register()` comment flow.
