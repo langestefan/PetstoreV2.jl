@@ -11,36 +11,5 @@ TimeZones = "f269a46b-ccf7-5d73-abea-4c690281aa53"
 
 [compat]
 Aqua = "0.8"
+HTTP = "1.11.0"
 JET = "0.9, 0.10, 0.11"
-
-# `Dates` is a stdlib but Julia 1.10 still requires it in [deps] when imported
-# from any non-default project. Listed unconditionally — generated wrappers
-# almost always interact with timestamps, and stdlib deps cost nothing.
-# `TimeZones` is added by `OpenAPISpec`'s posthook only when codegen ran,
-# matching how it appears in the package's own Project.toml.
-
-# Note: the package being tested (PetstoreV2) is NOT listed here.
-# `Pkg.test` injects it into the test sandbox automatically via `develop`
-# on every Julia version. Listing it would require `[sources]` to point
-# at the parent path — and `[sources]` is a Julia 1.11+ feature, ignored
-# by 1.10, which would then try to resolve PetstoreV2 from the registry and
-# fail with "has no known versions".
-
-# Aqua and JET are scaffolded by default so the linting tests in
-# `test-linting.jl` actually run. To skip linting on a slow CI runner set
-# `OPENAPI_SKIP_LINTING=1`. To drop them entirely:
-#
-#   pkg> activate test
-#   pkg> rm Aqua JET
-#
-# `test-linting.jl` detects-and-skips when they are absent.
-#
-# BrokenRecord, Mocking, and ReTestItems are also opt-in for the same
-# reason. Install when you want to use cassette playback / mocked HTTP /
-# parallel test items:
-#
-#   pkg> activate test
-#   pkg> add BrokenRecord@0.1 Mocking@0.8 ReTestItems@1
-#
-# `test-cassettes.jl` and `test-mocking.jl` detect-and-skip when the deps
-# are missing.
