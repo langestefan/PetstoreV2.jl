@@ -33,4 +33,3 @@ Access to Petstore orders
 ```@raw html
 <OAOperation operationId="getOrderById" prefix-headings="true" />
 ```
-

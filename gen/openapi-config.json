@@ -1,11 +1,11 @@
 {
-  "generatorName": "julia-client",
-  "packageName": "PetstoreV2API",
   "additionalProperties": {
     "exportModels": true,
     "exportOperations": true
   },
+  "generatorName": "julia-client",
   "globalProperties": {
     "skipFormModel": "false"
-  }
+  },
+  "packageName": "PetstoreV2API"
 }

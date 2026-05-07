@@ -65,4 +65,3 @@ Operations about user
 ```@raw html
 <OAOperation operationId="updateUser" prefix-headings="true" />
 ```
-

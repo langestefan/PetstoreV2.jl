@@ -41,10 +41,12 @@ function _run_cassette_tests(BrokenRecord)
         #    HTTP.jl versions). Including these would make cassettes
         #    fail to replay on a different Julia minor version than the
         #    one used to record.
-        ignore_headers = ["Authorization", "X-API-Key", "api_key",
-                          "X-Api-Key", "Cookie", "Set-Cookie",
-                          "Proxy-Authorization", "User-Agent",
-                          "Accept-Encoding"],
+        ignore_headers = [
+            "Authorization", "X-API-Key", "api_key",
+            "X-Api-Key", "Cookie", "Set-Cookie",
+            "Proxy-Authorization", "User-Agent",
+            "Accept-Encoding",
+        ],
         ignore_query = ["api_key", "token", "access_token"],
     )
 
