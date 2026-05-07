@@ -1,8 +1,9 @@
 # REST API Reference
 
 This section is the interactive browser for the OpenAPI spec bundled with
-[`PetstoreV2.jl`](../). The spec is committed at
-[`spec/openapi.json`](/openapi.json) and rendered with
+[`PetstoreV2.jl`](../index.md). The spec is committed at
+[`spec/openapi.json`](https://github.com/langestefan/PetstoreV2.jl/blob/main/spec/openapi.json)
+and rendered with
 [`vitepress-openapi`](https://github.com/enzonotario/vitepress-openapi).
 
 ```@raw html
